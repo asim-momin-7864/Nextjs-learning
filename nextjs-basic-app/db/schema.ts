@@ -31,8 +31,10 @@ export const notesTable = pgTable("notes", {
     .notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
-  category: categoryEnum("category").notNull(),
-  imageUrl: text("image_url"),
+  category: categoryEnum("category").notNull().default("other"),
+  imageUrl: text("image_url").default(
+    "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+  ),
   isPinned: boolean("is_pinned").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
