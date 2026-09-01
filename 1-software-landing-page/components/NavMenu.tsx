@@ -7,7 +7,7 @@ const NavMenu = () => {
     <div className="absolute h-fit bg-black mt-5 right-5 rounded-2xl">
       <ul className="flex flex-col gap-y-5 py-5 px-15">
         <li key={6}>
-          <Link href={"#"}>{"Login"}</Link>
+          <Link href={"#"}>{"Register"}</Link>
         </li>
         {navbarOptions.map((item) => {
           return (
