@@ -18,13 +18,10 @@ const roboto = Roboto({
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`h-full antialiased ${roboto.className}`}
-    >
-      <body className="min-h-full overflow-x-hidden flex flex-col bg-white text-gray-900">
+    <html lang="en" className={`h-full antialiased ${roboto.className}`}>
+      <body className="min-h-full overflow-x-hidden flex flex-col bg-green-700 text-black">
         <Navbar />
-        <main className="grow w-full lg:max-w-4xl xl:max-w-5xl m-auto flex flex-col gap-y-5">
+        <main className="grow w-full lg:max-w-4xl xl:max-w-5xl m-auto flex flex-col gap-y-5 bg-red-900">
           {children}
         </main>
         {/* footer */}
