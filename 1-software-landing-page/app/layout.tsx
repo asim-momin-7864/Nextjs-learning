@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Roboto } from "next/font/google";
+import { ThemeProvider } from "@/components/Navbar/ThemeProvider";
 
 // components
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Software Landing Page",
@@ -20,12 +21,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`h-full antialiased ${roboto.className} bg-green-400`}
+      suppressHydrationWarning
+      className={`h-full antialiased ${roboto.className}`}
     >
-      <body className="min-h-full overflow-x-hidden flex flex-col bg-blue-900">
-        <Navbar />
-        <main className="grow w-full">{children}</main>
-        {/* footer */}
+      <body className="min-h-full overflow-x-hidden flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+        <ThemeProvider>
+          <Navbar />
+          <main className="grow w-full lg:max-w-4xl xl:max-w-5xl  m-auto">
+            {children}
+          </main>
+          {/* footer */}
+        </ThemeProvider>
       </body>
     </html>
   );
