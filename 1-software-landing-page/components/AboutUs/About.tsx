@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <div className="w-full bg-gray-800 text-white flex flex-col gap-y-5 py-5 lg:flex-row items-center">
+    <div className="w-full bg-slate-900 text-white flex flex-col gap-y-5 py-5 lg:flex-row items-center rounded-3xl mt-5">
       <div className="relative w-full h-50 sm:h-70 lg:w-1/2">
         <Image
           src="/about.png"
@@ -14,7 +14,7 @@ const About = () => {
         />
       </div>
       <div className="space-y-5 px-5 lg:w-1/2">
-        <div className="font-bold text-xl text-amber-300 tracking-wide">ABOUT US</div>
+        <div className="font-bold text-xl text-blue-400 tracking-wide">ABOUT US</div>
         <div className="font-semibold text-3xl lg:text-5xl">
           Innovations Excellence Building Digital Future Together
         </div>
@@ -74,7 +74,7 @@ const About = () => {
           </div>
         </div>
         <div>
-          <button className="font-bold bg-blue-800 py-4 px-6 rounded-full">
+          <button className="font-bold bg-blue-600 hover:bg-blue-500 py-4 px-6 rounded-full transition-colors">
             ABOUT MORE
           </button>
         </div>
