@@ -6,6 +6,7 @@ import { navbarOptions } from "@/constant/constant";
 import Link from "next/link";
 import NavMenu from "./NavMenu";
 import { useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   // state for menu button
@@ -16,16 +17,22 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full h-fit bg-gray-800 text-white p-5 ">
+    <nav className="w-full h-fit sticky top-0 z-50  bg-gray-800 text-white p-5 ">
       <div className=" mx-auto flex flex-row items-center justify-between py-2 pr-4 pl-2 xl:max-w-5xl bg-black rounded-full">
         {/* Logo Container */}
         <div className=" bg-white rounded-full p-1">
           <div className="relative w-10 h-10">
-            <Image src="/s4.png" alt="Logo" fill className="object-contain" />
+            <Image
+              src="/s4.png"
+              alt="Logo"
+              fill
+              sizes="40px"
+              className="object-contain"
+            />
           </div>
         </div>
 
-        <div className="hidden sm:flex flex-row gap-x-4">
+        <div className="hidden sm:flex flex-row items-center gap-x-4">
           {navbarOptions.map((item) => {
             return (
               <Link href={item.url} key={item.id} className="font-semibold">
@@ -33,6 +40,7 @@ const Navbar = () => {
               </Link>
             );
           })}
+          <ThemeToggle />
         </div>
         <div className="hidden sm:block text-center align-baseline px-2 py-1 bg-white text-black rounded-full">
           fox3@gmail.com
