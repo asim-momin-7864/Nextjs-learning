@@ -1,15 +1,13 @@
+import Hero from "@/components/custome/Hero";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div>
-      Hello pizza Wizza
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid
-        accusantium praesentium officiis iusto, amet aspernatur nemo porro fugit
-        sit quis nobis dolorem eaque nesciunt repudiandae illum reprehenderit?
-        Nesciunt, inventore architecto?
-      </p>
-    </div>
+    // do not consider it as div (you cannot apply spacing and styles here)
+    // insted it is best and more customizable we do according to each section r.g ..Hero, Service, About us, ...
+    // no central style in hand of main and home page.tsx ---- everything is in hand to its our section componenst
+    <>
+      <Hero />
+    </>
   );
 }

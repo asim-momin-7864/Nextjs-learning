@@ -31,7 +31,7 @@ const Header = () => {
             />
             <h4>Pizza-Wizza</h4>
           </div>
-          <div className="hidden sm:block">
+          <div className="hidden lg:block">
             <Select items={orderPlaces}>
               <SelectTrigger className="w-45">
                 <SelectValue placeholder="Location" />
@@ -76,13 +76,11 @@ const Header = () => {
             </Badge>
             <ShoppingBasket />
           </div>
-          <div className=" hidden sm:flex items-center gap-x-1">
+          <div className=" hidden lg:flex items-center gap-x-1">
             <Phone />
             <span className="lining-nums">+91 9800 098998</span>
           </div>
-          <Button className=" bg-chart-2" variant={"outline"}>
-            Logout
-          </Button>
+          <Button className=" bg-chart-2">Logout</Button>
         </div>
       </Container>
     </header>
