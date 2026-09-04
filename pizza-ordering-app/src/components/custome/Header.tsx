@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "@/components/custome/Container";
+import Container from "@/components/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
 import {
