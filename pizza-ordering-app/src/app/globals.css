@@ -49,7 +49,7 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: hsl(15, 33%, 98%);
   --foreground: oklch(0.147 0.004 49.25);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.147 0.004 49.25);
@@ -124,7 +124,8 @@
   body {
     @apply bg-background text-foreground;
   }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
   html {
