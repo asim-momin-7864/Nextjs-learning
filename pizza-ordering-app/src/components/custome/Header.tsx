@@ -34,7 +34,7 @@ const Header = () => {
           <div className="hidden sm:block">
             <Select items={orderPlaces}>
               <SelectTrigger className="w-45">
-                <SelectValue placeholder="Theme" />
+                <SelectValue placeholder="Location" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
@@ -49,7 +49,7 @@ const Header = () => {
           </div>
         </div>
         <div className="flex items-center gap-x-6 justify-center">
-          <ul className="hidden sm:flex items-center gap-x-4 ">
+          <ul className="hidden sm:flex items-center gap-x-2 ">
             <li>
               <Link
                 href={"/menu"}
