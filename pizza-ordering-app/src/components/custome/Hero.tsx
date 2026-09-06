@@ -6,9 +6,9 @@ import { Button } from "../ui/button";
 const Hero = () => {
   //  why this div - so we can set bg color, full width, and sizing spacing if need accoridng to each section
   return (
-    <div className="w-full bg-card h-auto py-5">
+    <div className="w-full bg-muted py-16">
       <Container as="section">
-        <div className="flex flex-col gap-y-5 lg:flex-row items-center justify-items-center ">
+        <div className="flex flex-col-reverse gap-y-10 lg:flex-row items-center gap-x-12">
           <div className="relative w-full h-64 md:h-96">
             <Image
               src="/pizza-2.png"
@@ -22,17 +22,17 @@ const Hero = () => {
             <div>
               <p className="font-extrabold text-5xl">
                 Super Delicious Pizza in
-                <span className="lining-nums text-chart-2">
+                <span className="lining-nums text-brand-accent">
                   {" "}
                   Only 45 Minutes!
                 </span>
               </p>
             </div>
             <div>
-              <p>Enjoy a free meal if your order takes more than 45 minutes!</p>
+              <p className="text-lg text-muted-foreground">Enjoy a free meal if your order takes more than 45 minutes!</p>
             </div>
             <div>
-              <Button className={"bg-chart-2"}>Get your pizza now</Button>
+              <Button size="lg">Get your pizza now</Button>
             </div>
           </div>
         </div>

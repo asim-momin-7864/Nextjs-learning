@@ -53,7 +53,7 @@ const Header = () => {
             <li>
               <Link
                 href={"/menu"}
-                className="hover:text-chart-2 transition-colors"
+                className="hover:text-brand-accent transition-colors"
               >
                 Menu
               </Link>
@@ -61,7 +61,7 @@ const Header = () => {
             <li>
               <Link
                 href={"/order"}
-                className="hover:text-chart-2 transition-colors"
+                className="hover:text-brand-accent transition-colors"
               >
                 Order
               </Link>
@@ -70,7 +70,7 @@ const Header = () => {
           <div className="relative">
             <Badge
               variant="default"
-              className="absolute -top-3.5 -right-3 h-5 min-w-5  px-1 text-[10px]"
+              className="absolute -top-3.5 -right-3 h-5 min-w-5 px-1 text-[10px] bg-brand-accent text-brand-accent-foreground"
             >
               3
             </Badge>
@@ -80,7 +80,7 @@ const Header = () => {
             <Phone />
             <span className="lining-nums">+91 9800 098998</span>
           </div>
-          <Button className=" bg-chart-2">Logout</Button>
+          <Button variant="outline">Logout</Button>
         </div>
       </Container>
     </header>

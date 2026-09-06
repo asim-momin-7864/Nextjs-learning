@@ -1,5 +1,5 @@
 import Hero from "@/components/custome/Hero";
-import { Button } from "@/components/ui/button";
+import Products from "@/components/custome/ProductsSection";
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
     // no central style in hand of main and home page.tsx ---- everything is in hand to its our section componenst
     <>
       <Hero />
+      <Products />
     </>
   );
 }
