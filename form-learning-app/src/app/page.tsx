@@ -1,19 +1,13 @@
 "use client";
-import Image from "next/image";
+
 import { z } from "zod";
 import { useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
-import { InfoIcon, Plane } from "lucide-react";
-import {
-  Alert,
-  AlertAction,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
+import { InfoIcon, Plane, Loader2 } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -113,8 +107,8 @@ export default function Home() {
     try {
       await fakeTripSubmit(data);
       toast.add({
-        type: "sucess",
-        title: "Trop booked!!!",
+        type: "success",
+        title: "Trip booked!!!",
         description: "Your trip has been booked successfully",
       });
       reset();
@@ -275,8 +269,16 @@ export default function Home() {
                 </Field>
               )}
 
-              <Button type="submit" variant={"default"}>
-                <Plane /> Confirm Booking
+              <Button type="submit" variant={"default"} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="animate-spin" /> Submitting....
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-2">
+                    <Plane /> Confirm Booking
+                  </span>
+                )}
               </Button>
             </FieldGroup>
           </FieldSet>
