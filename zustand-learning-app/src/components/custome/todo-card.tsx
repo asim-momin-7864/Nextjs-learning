@@ -24,7 +24,7 @@ const TodoCard = ({ taskData }: TodoProp) => {
       className={`flex gap-4 w-full items-center border p-4 rounded-xl transition-all duration-300 ${
         taskData.isCompleted
           ? "bg-muted/50 border-transparent opacity-75 grayscale-[0.5]"
-          : "bg-card border-border shadow-sm hover:shadow-md"
+          : "bg-card border-border shadow-2xs hover:shadow-xs"
       }`}
     >
       {isEditing ? (
