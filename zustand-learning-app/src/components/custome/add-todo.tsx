@@ -2,10 +2,12 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import useTodoStore from "@/lib/todo-store";
 
 const AddTodo = () => {
   // input state (for mini form we are not using RHF)
   const [input, setInput] = useState<string>("");
+  const addTaskFunction = useTodoStore((state) => state.addTaskFunction);
 
   // handle submit
   const handleOnSubmit = () => {
@@ -13,7 +15,7 @@ const AddTodo = () => {
     if (newTask === "") return;
 
     // zustand add func
-    console.log(newTask);
+    addTaskFunction(newTask);
 
     setInput("");
   };

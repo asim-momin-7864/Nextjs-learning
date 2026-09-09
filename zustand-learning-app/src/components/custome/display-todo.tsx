@@ -1,5 +1,6 @@
-import React from "react";
+"use client";
 import TodoCard from "./todo-card";
+import useTodoStore from "@/lib/todo-store";
 
 export type TodoType = {
   id: string;
@@ -9,20 +10,9 @@ export type TodoType = {
 };
 
 const DisplayTodo = () => {
-  const todos: TodoType[] = [
-    {
-      id: "1",
-      task: "Task 1",
-      isCompleted: false,
-      createdAt: new Date(),
-    },
-    {
-      id: "2",
-      task: "Task 2",
-      isCompleted: true,
-      createdAt: new Date(),
-    },
-  ];
+  // tasks from store to display
+  const todos = useTodoStore((state) => state.todos);
+
   return (
     <div className="flex flex-col gap-4 w-full items-center">
       {todos.map((task) => (
