@@ -20,6 +20,7 @@
 
 import { create } from "zustand";
 
+// type for zustand store we create (what data store saves)
 interface AuthState {
   /** The bearer token that will be attached to every API request. */
   token: string | null;
