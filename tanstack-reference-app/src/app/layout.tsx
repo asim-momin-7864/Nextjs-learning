@@ -53,7 +53,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background text-foreground">
+      <body className="min-h-full bg-background text-foreground" suppressHydrationWarning>
         {/*
          * QueryProvider wraps the entire app tree.
          * It is a "use client" component, but its children (like page.tsx)
