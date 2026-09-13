@@ -6,9 +6,12 @@
  *
  * 1. `queryOptions()` factory (TanStack Query v5)
  *    `queryOptions` is a new helper that co-locates the query key and query
- *    function into a single reusable object. Benefits:
+ *    function into a single reusable object.
+ *
+ * Benefits:
  *     - Type safety: the key and fn are linked, so the inferred data type
  *       flows through correctly everywhere this options object is used.
+ *
  *     - Reusability: pass `postsQueryOptions` to `useQuery`, `prefetchQuery`,
  *       or `queryClient.invalidateQueries` — the key is always consistent.
  *     - No "magic strings": the query key is defined once and referenced by
@@ -30,7 +33,7 @@ import { fetchPosts } from "@/lib/api";
 
 /**
  * QUERY KEY BEST PRACTICES:
- * - Always use arrays (even for simple keys) to allow hierarchical invalidation.
+ ** - Always use arrays (even for simple keys) to allow hierarchical invalidation.
  * - Nest from most-general to most-specific: `["posts"]` → `["posts", postId]`.
  * - `queryClient.invalidateQueries({ queryKey: ["posts"] })` will invalidate
  *   BOTH `["posts"]` AND `["posts", 1]` because of prefix-matching.
