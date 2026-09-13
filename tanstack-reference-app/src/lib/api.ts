@@ -58,7 +58,7 @@ apiClient.interceptors.request.use(
   (error) => {
     // If the request setup itself fails (e.g., invalid config), reject the promise.
     return Promise.reject(error);
-  }
+  },
 );
 
 // ---------------------------------------------------------------------------
@@ -68,7 +68,7 @@ apiClient.interceptors.request.use(
 /**
  * WHY SEPARATE FETCHER FUNCTIONS (not inline in useQuery)?
  * - They're individually testable units.
- * - They return typed promises, which is what TanStack Query infers from.
+ ** - They return typed promises, which is what TanStack Query infers from.
  * - We don't need to pass generics to `useQuery` — TanStack v5 infers the
  *   type from the `queryFn`'s return type automatically.
  *
@@ -88,9 +88,7 @@ export const fetchPosts = async (): Promise<Post[]> => {
 };
 
 /** Creates a new post. The server echoes the post back with a generated `id`. */
-export const createPost = async (
-  payload: Omit<Post, "id">
-): Promise<Post> => {
+export const createPost = async (payload: Omit<Post, "id">): Promise<Post> => {
   const response = await apiClient.post<Post>("/posts", payload);
   return response.data;
 };

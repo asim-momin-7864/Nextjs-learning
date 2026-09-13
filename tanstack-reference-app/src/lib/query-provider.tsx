@@ -8,11 +8,11 @@
  *
  * This is WRONG in Next.js App Router because:
  *  - The server handles many requests concurrently.
- *  - Module-level singletons are shared across ALL requests on the server.
- *  - User A's cached data would leak into User B's response — a critical
+ *!  - Module-level singletons are shared across ALL requests on the server.
+ *!  - User A's cached data would leak into User B's response — a critical
  *    data privacy and correctness bug.
  *
- * THE SOLUTION: `useRef` Singleton Per Component Instance
+ * *THE SOLUTION: `useRef` Singleton Per Component Instance
  * By storing the QueryClient in a `useRef`, we ensure:
  *  1. Server-side: Each render call gets its own QueryClient (no shared state).
  *  2. Client-side: The QueryClient is created once (on mount) and survives
@@ -22,12 +22,18 @@
  * Next.js App Router:
  * @see https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr
  *
- * "use client" is necessary because:
- *  - `QueryClientProvider` uses React Context internally.
+ ** "use client" is necessary because:
+ **  - `QueryClientProvider` uses React Context internally.
  *  - React Context is not available in Server Components.
- *  - We mark only THIS small wrapper as a client component, keeping the rest
- *    of the app (layout, page) as Server Components.
+ **  - We mark only THIS small wrapper as a client component, keeping the rest
+ **    of the app (layout, page) as Server Components.
  */
+
+//  -----------
+/*
+* NOTE: We need to know more deeply / clealry what is server query client and what is browser query client ??
+what is difference ?? and why we need this two types ??
+*/
 
 "use client";
 
@@ -95,9 +101,9 @@ interface QueryProviderProps {
  * `QueryProvider` wraps the application tree to provide the TanStack Query
  * context. It must be placed high in the component tree (e.g., in layout.tsx).
  *
- * Note: We use `useState` instead of `useRef` here because `useState`'s
- * initializer function only runs once per component lifecycle, which is
- * exactly the behavior we want.
+ ** Note: We use `useState` instead of `useRef` here because `useState`'s
+ ** initializer function only runs once per component lifecycle, which is
+ ** exactly the behavior we want.
  */
 export function QueryProvider({ children }: QueryProviderProps) {
   // `useState` with a factory function: the factory runs only ONCE (on mount),
