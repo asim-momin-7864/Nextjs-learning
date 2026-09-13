@@ -3,7 +3,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "@/components/ui/toast";
-import { CreatePost } from "@/lib/schema";
 import { postsQueryOptions } from "./use-posts";
 import { CreatePostSchema } from "@/lib/schema";
 import { createPost } from "@/lib/api";

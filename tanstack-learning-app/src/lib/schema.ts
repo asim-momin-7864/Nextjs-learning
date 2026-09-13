@@ -27,4 +27,4 @@ export const CreatePostSchema = z.object({
     .min(10, "Body must be at least 10 characters long"),
 });
 
-export type CreatePost = z.infer<typeof CreatePostSchema>;
+export type CreatePostInput = z.infer<typeof CreatePostSchema>;
