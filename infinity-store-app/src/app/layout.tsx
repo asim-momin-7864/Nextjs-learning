@@ -38,7 +38,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         geistHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body 
+        className="min-h-full flex flex-col bg-background text-foreground"
+        suppressHydrationWarning
+      >
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
         <Footer />
