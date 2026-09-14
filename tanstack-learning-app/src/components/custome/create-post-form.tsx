@@ -14,31 +14,45 @@ import {
 } from "@/components/ui/field";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-//
+// Create Post Form Component
 export function CreatePostForm() {
-  const { mutate: createPost, isPending } = useCreatePost();
+  // Call the useCreatePost hook to get the mutation function and pending state
+  const createPostMutation = useCreatePost();
+  const createPost = createPostMutation.mutate;
+  const isPending = createPostMutation.isPending;
 
-  const form = useForm<CreatePostInput>({
+  // Initialize the form with react-hook-form and zod validation
+  const formOptions = {
     resolver: zodResolver(CreatePostSchema),
     defaultValues: {
       title: "",
       body: "",
     },
-  });
+  };
+  const form = useForm<CreatePostInput>(formOptions);
 
-  // handle form sumbit
+  // Function to handle form submission
   function onSubmit(data: CreatePostInput) {
-    createPost(
-      { ...data, userId: 1 },
-      {
-        onSuccess: () => {
-          form.reset();
-        },
+    // Combine the form data with a default userId
+    const postPayload = {
+      title: data.title,
+      body: data.body,
+      userId: 1, // Default user ID
+    };
+
+    // Define options for the mutation
+    const mutationOptions = {
+      onSuccess: function () {
+        // Reset the form fields after a successful submission
+        form.reset();
       },
-    );
+    };
+
+    // Call the mutate function to create the post
+    createPost(postPayload, mutationOptions);
   }
 
-  //
+  // Render the form inside a Card component
   return (
     <Card>
       <CardHeader>
@@ -47,11 +61,12 @@ export function CreatePostForm() {
 
       <CardContent>
         <form
+          // Pass the onSubmit function to form.handleSubmit
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-5"
           noValidate
         >
-          {/* title field */}
+          {/* Title input field */}
           <Field>
             <FieldLabel htmlFor="title">Title</FieldLabel>
             <Input
@@ -61,9 +76,11 @@ export function CreatePostForm() {
               {...form.register("title")}
             />
             <FieldDescription>Min 3 chars max 100</FieldDescription>
+            {/* Display errors for the title field */}
             <FieldError errors={[form.formState.errors.title]} />
           </Field>
 
+          {/* Body textarea field */}
           <Field>
             <FieldLabel htmlFor="body">Body</FieldLabel>
             <textarea
@@ -75,16 +92,18 @@ export function CreatePostForm() {
               {...form.register("body")}
             />
             <FieldDescription>Min 10 characters, max 500.</FieldDescription>
+            {/* Display errors for the body field */}
             <FieldError errors={[form.formState.errors.body]} />
           </Field>
 
-          {/* button */}
+          {/* Submit button */}
           <Button
             type="submit"
             disabled={isPending}
             className="w-full"
             id="crate-post-submit"
           >
+            {/* Show different text based on the pending state */}
             {isPending ? "Publishing......" : "Publish Post"}
           </Button>
         </form>

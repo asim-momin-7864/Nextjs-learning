@@ -5,46 +5,59 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-// factory func to create client
-const makeQueryClient = () => {
-  return new QueryClient({
+// Factory function to create a new QueryClient
+function makeQueryClient() {
+  const newClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 1000 * 60,
-        retry: 2, // if fetch fails, retry 2 times
+        // Time in milliseconds before a query is considered stale
+        staleTime: 1000 * 60, // 1 minute
+        // Number of times to retry a failed query
+        retry: 2, 
       },
     },
   });
-};
 
-// browser client switch
+  return newClient;
+}
+
+// Variable to store the QueryClient for the browser environment
 let browserQueryClient: QueryClient | undefined = undefined;
 
-// return query client for server or browser
+// Function to get the correct QueryClient for server or browser
 function getQueryClient(): QueryClient {
+  // Check if we are running on the server
   if (typeof window === "undefined") {
-    // make query client if for server
+    // On the server, always create a new QueryClient
     return makeQueryClient();
   }
 
-  // make once for browser
-  if (!browserQueryClient) {
+  // Check if we are running in the browser and the client is not yet created
+  if (browserQueryClient === undefined) {
+    // On the browser, create the QueryClient once and store it
     browserQueryClient = makeQueryClient();
   }
 
+  // Return the stored browser QueryClient
   return browserQueryClient;
 }
 
-// type for props
+// Interface defining the props for the QueryProvider component
 interface QueryProviderProps {
   children: React.ReactNode;
 }
 
-// query provider wrapper component
-export function QueryProvider({ children }: QueryProviderProps) {
-  // state
-  const [queryClient] = useState(() => getQueryClient());
+// Wrapper component that provides the QueryClient to the rest of the app
+export function QueryProvider(props: QueryProviderProps) {
+  // Extract children from props
+  const children = props.children;
 
+  // Initialize the query client state once using getQueryClient
+  const [queryClient] = useState(function() {
+    return getQueryClient();
+  });
+
+  // Render the QueryClientProvider with the ReactQueryDevtools
   return (
     <QueryClientProvider client={queryClient}>
       {children}
