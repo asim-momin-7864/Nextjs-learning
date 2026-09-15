@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/custome/navbar";
 import Footer from "@/components/custome/footer";
+import { Providers } from "@/components/providers";
 
 const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
 
@@ -42,9 +43,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="min-h-full flex flex-col bg-background text-foreground"
         suppressHydrationWarning
       >
-        <Navbar />
-        <main className="flex-1 w-full">{children}</main>
-        <Footer />
+        <Providers>
+          <Navbar />
+          <main className="flex-1 w-full">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
