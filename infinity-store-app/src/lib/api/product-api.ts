@@ -5,7 +5,7 @@ import type { ProductType, ProductResponseType } from "../schemas/product";
 import { api } from "./user-api";
 
 //
-export interface GetProductParams {
+export interface GetProductParamsType {
   limit?: number;
   skip?: number;
   search?: string;
@@ -14,7 +14,7 @@ export interface GetProductParams {
 
 //
 export const getProducts = async (
-  params: GetProductParams,
+  params: GetProductParamsType,
 ): Promise<ProductResponseType> => {
   // extract values
   const limit = params.limit || 10;
