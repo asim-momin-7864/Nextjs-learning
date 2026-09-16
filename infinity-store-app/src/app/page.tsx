@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useProducts } from "@/hooks/ues-products";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircleIcon } from "lucide-react";
+import CatelogPagination from "@/components/custome/catelog-pagination";
 
 export default function Home() {
   // search params
@@ -32,6 +33,10 @@ export default function Home() {
     limit: limit,
     skip: skip,
   });
+
+  // calculation for pagination component
+  const totalItems = data?.total || 0;
+  const totalPages = Math.ceil(totalItems / limit);
 
   // error handler
   if (isError) {
@@ -74,6 +79,10 @@ export default function Home() {
           </div>
           {/* Catalog Grid & Pagination */}
           <CatelogPage products={data?.products} isPending={isPending} />
+          <CatelogPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
         </div>
       </Container>
     </div>
