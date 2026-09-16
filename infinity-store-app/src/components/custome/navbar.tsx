@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { ShoppingCart, User, Sun, Moon } from "lucide-react";
 import { Button } from "../ui/button";
 import Container from "../ui/container";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
+  const { theme, setTheme } = useTheme();
+
   return (
     <header className="sticky top-0 z-50 w-full py-4">
       <Container as="nav" variant="default">
@@ -31,6 +35,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="rounded-full hover:bg-primary/20 hover:text-primary"
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
