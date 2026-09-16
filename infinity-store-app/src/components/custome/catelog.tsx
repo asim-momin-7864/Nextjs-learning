@@ -1,14 +1,6 @@
-import React from "react";
+"use client";
+
 import CatelogCard from "./catelog-card";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "../ui/pagination";
 
 import type { ProductType } from "@/lib/schemas/product";
 import { Skeleton } from "../ui/skeleton";
@@ -57,34 +49,6 @@ export const CatelogPage = (props: CatelogPagePropsType) => {
             isPending={isPending}
           />
         ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="mt-8 flex justify-center pb-4">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                1
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
       </div>
     </div>
   );
