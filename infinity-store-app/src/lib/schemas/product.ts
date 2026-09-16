@@ -7,7 +7,7 @@ export const reviewSchema = z.object({
   rating: z.number().min(1).max(5),
   comment: z.string(),
   reviewerName: z.string(),
-  date: z.date(),
+  date: z.coerce.date(),
 });
 
 // enum
@@ -43,7 +43,7 @@ export type categoryEnumType = z.infer<typeof categoryEnum>;
 export const ProductSchema = z.object({
   id: z.number(),
   title: z.string(),
-  brand: z.string(),
+  brand: z.string().optional(),
   category: categoryEnum,
   price: z.number(),
   discountPercentage: z.number(),
