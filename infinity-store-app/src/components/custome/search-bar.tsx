@@ -18,7 +18,8 @@ const SearchBar = () => {
 
   // local state for search bar
   const [inputValue, setInputValue] = useState<string>(startingSearchWord);
-  const [prevUrlSearch, setPrevUrlSearch] = useState<string>(startingSearchWord);
+  const [prevUrlSearch, setPrevUrlSearch] =
+    useState<string>(startingSearchWord);
 
   // state for debounce
   const [debouncedValue] = useDebounce(inputValue, 500);
@@ -77,8 +78,8 @@ const SearchBar = () => {
     <form onSubmit={handleSearchSubmit}>
       <div className="flex w-full items-center gap-2">
         <div className="relative flex-1">
-          <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
-            <Search className="h-5 w-5 text-muted-foreground" />
+          <div className="pointer-events-none absolute inset-y-0 left-4 z-10 flex items-center text-muted-foreground">
+            <Search className="h-5 w-5" />
           </div>
           <Input
             type="text"
