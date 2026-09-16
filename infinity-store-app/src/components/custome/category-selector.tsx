@@ -22,6 +22,7 @@ const CategorySelector = () => {
       // to avoid refetch same
     } else {
       params.set("category", category);
+      params.delete("search"); // clear search when selecting category
     }
 
     // reset page

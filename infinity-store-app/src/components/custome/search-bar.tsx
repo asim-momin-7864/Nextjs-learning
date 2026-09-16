@@ -18,6 +18,7 @@ const SearchBar = () => {
 
   // local state for search bar
   const [inputValue, setInputValue] = useState<string>(startingSearchWord);
+  const [prevUrlSearch, setPrevUrlSearch] = useState<string>(startingSearchWord);
 
   // state for debounce
   const [debouncedValue] = useDebounce(inputValue, 500);
@@ -32,6 +33,7 @@ const SearchBar = () => {
     //
     if (newSearchWord !== "") {
       currentParams.set("search", newSearchWord);
+      currentParams.delete("category"); // clear category when searching
     } else {
       currentParams.delete("search");
     }
@@ -46,16 +48,24 @@ const SearchBar = () => {
     router.push(`${pathname}?${newUrlString}`);
   }
 
-  // useEffect
+  const currentUrlSearch = searchParams.get("search") || "";
+
+  // 1. Sync external URL changes (e.g. clearing search via category) during render
+  if (currentUrlSearch !== prevUrlSearch) {
+    setPrevUrlSearch(currentUrlSearch);
+    setInputValue(currentUrlSearch);
+  }
+
+  // 2. Push debounced input changes to URL
   useEffect(() => {
     const currentUrlSearch = searchParams.get("search") || "";
-
-    // if initial load or url search !== input value
-    // delayed word is differetnt from current input, push it
-    if (debouncedValue !== currentUrlSearch) {
+    // Only fire if the debounced value is completely synced with what the user is typing
+    // AND it differs from the URL. This prevents stale debounced values from firing.
+    if (debouncedValue !== currentUrlSearch && debouncedValue === inputValue) {
       pushNewSearchToUrl(debouncedValue);
     }
-  }, [debouncedValue, searchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValue]);
 
   // handle submit
   function handleSearchSubmit(e: SubmitEvent) {
