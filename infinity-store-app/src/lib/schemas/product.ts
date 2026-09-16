@@ -38,6 +38,8 @@ export const categoryEnum = z.enum([
   "womens-watches",
 ]);
 
+export type categoryEnumType = z.infer<typeof categoryEnum>;
+
 export const ProductSchema = z.object({
   id: z.number(),
   title: z.string(),
