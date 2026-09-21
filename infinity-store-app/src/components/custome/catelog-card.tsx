@@ -54,7 +54,9 @@ const CatelogCard = (params: CatelogCardPropsType) => {
               <span>{product.rating}</span>
             </div>
           </div>
-          <CardTitle className="line-clamp-1 text-lg">{product.title}</CardTitle>
+          <CardTitle className="line-clamp-1 text-lg">
+            {product.title}
+          </CardTitle>
           <CardDescription className="line-clamp-2 text-xs">
             {product.description}
           </CardDescription>
