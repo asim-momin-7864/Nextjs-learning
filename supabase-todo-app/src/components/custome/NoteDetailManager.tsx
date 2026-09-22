@@ -167,3 +167,43 @@ const NoteDetailManager = ({ note }: { note: Note }) => {
 };
 
 export default NoteDetailManager;
+
+/*
+===========================================================================
+ARCHITECTURAL NOTE: Why did we build a separate edit form here 
+instead of reusing NoteForm.tsx?
+===========================================================================
+While the forms look similar, we would have had to completely rewrite 
+NoteForm.tsx to make it flexible enough for both "Creating" and "Editing".
+
+Here are the 4 main reasons they are separate:
+
+1. Different Server Actions
+   - NoteForm uses `addNote`.
+   - This edit form uses `updateNote`.
+   - To combine: We would need a prop like `<NoteForm action={updateNote} />`
+
+2. Pre-filled Data (Default Values)
+   - NoteForm starts empty.
+   - This form needs to be pre-filled (e.g. defaultValue={note.title}).
+   - To combine: We would need a prop like `<NoteForm initialData={note} />`
+
+3. The Hidden ID Field
+   - When updating, the server needs to know *which* note to update.
+   - We solve this here with: <input type="hidden" name="id" value={note.id} />
+   - The create form doesn't need this.
+
+4. Different Buttons
+   - NoteForm just has a "Save Note" button.
+   - This edit form needs a "Cancel" button to exit edit mode.
+
+Summary:
+While large apps often build one highly complex `<SharedNoteForm>` that 
+accepts many props to handle both cases, keeping them separate while 
+learning is actually a best practice for readability. 
+
+It makes it incredibly clear that:
+- NoteForm.tsx = Dedicated to Creating.
+- NoteDetailManager.tsx = Dedicated to Viewing/Editing/Deleting.
+===========================================================================
+*/
