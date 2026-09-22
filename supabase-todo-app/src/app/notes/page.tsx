@@ -4,6 +4,10 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import NoteForm from "@/components/custome/NoteForm";
 
+// it is server componenet..... think how it work and do it have interactivity with use ? --> no
+// just take data in server and bake it in html, prepare UI code and it send to browser
+// yaa its some part is CLient component (so we split that code and made it client component)
+
 export const instant = false;
 
 const page = async () => {
